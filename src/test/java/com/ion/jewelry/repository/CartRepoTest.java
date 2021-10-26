@@ -25,7 +25,7 @@ public class CartRepoTest extends JewelryProjectApplicationTests {
 		
 		Cart cart = new Cart();
 		cart.setItemCount(3);
-		cart.setMemberId(1);
+		cart.setMemberId(1L);
 		
 		Optional<Item> optional = itemRepo.findById(1L);
 		optional.ifPresent(item -> {

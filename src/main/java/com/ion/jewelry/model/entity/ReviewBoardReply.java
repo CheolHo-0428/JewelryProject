@@ -19,22 +19,22 @@ import lombok.experimental.Accessors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"item"})
+@ToString(exclude = {"reviewBoard"})
 @Builder
 @Accessors(chain = true)
 @Entity
-public class Cart extends AABaseTimeEntity {
+public class ReviewBoardReply extends AABaseTimeEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CartSequenceGenerator")
-	@SequenceGenerator(name = "CartSequenceGenerator", sequenceName = "CartSequence", initialValue = 1, allocationSize = 1)
-	private Long id; //장바구니번호
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ReviewBoardReplySequenceGenerator")
+	@SequenceGenerator(name="ReviewBoardReplySequenceGenerator", sequenceName = "ReviewBoardReplySequence", initialValue = 1, allocationSize = 1)
+	private Long id; // 댓글번호
 	
-	private Integer itemCount; //구매수량
+	private String writer; //댓글작성자
 	
-	private Long memberId; //회원번호
+	private String content; //댓글내용
 	
 	@ManyToOne
-	private Item item; //상품번호(fk), item 테이블 연관관계 설정(N:1)
-
+	private ReviewBoard reviewBoard; //리뷰번호(fk), ReviewBoard 테이블 연관관계 설정(N:1)
+	
 }

@@ -72,7 +72,7 @@ public class OrderGroup extends AABaseTimeEntity {
 	private LocalDateTime arrivalDate; //상품 도착예정일
 		
 	@ManyToOne
-	private Member member; //Member 테이블 연관관계 설정(N:1, fk)
+	private Member member; // 회원번호(fk), Member 테이블 연관관계 설정(N:1)
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
 	private List<OrderDetail> orderDetailList; // OrderDetail 테이블 연관관계 설정(1:N)
