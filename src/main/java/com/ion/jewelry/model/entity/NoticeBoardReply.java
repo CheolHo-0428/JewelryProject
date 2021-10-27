@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +36,7 @@ public class NoticeBoardReply extends AABaseTimeEntity {
 	
 	private String content; // 공지사항 댓글내용
 	
+	@JsonBackReference
 	@ManyToOne
 	private NoticeBoard noticeBoard; //공지사항번호(fk), 공지사항 테이블 연관관계 설정(N:1)
 	

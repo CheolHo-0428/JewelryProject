@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ion.jewelry.model.enums.YesNo;
 
 import lombok.AllArgsConstructor;
@@ -57,6 +58,7 @@ public class NoticeBoard extends AABaseTimeEntity {
 	@Enumerated(EnumType.STRING)
 	private YesNo deleteCheck; //이미지파일삭제여부
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "noticeBoard")
 	private List<NoticeBoardReply> noticeBoardReplyList;
 	
