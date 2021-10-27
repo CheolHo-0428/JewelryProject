@@ -3,6 +3,9 @@ package com.ion.jewelry.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -55,9 +58,14 @@ public abstract class AABaseController<Req, Res, Entity> implements CrudInterfac
 	@Override
 	@GetMapping("")
 	public Header<List<Res>> allRead() {
-		
 		return baseService.allRead();
 	}
-	
+
+	@Override
+	@GetMapping("/paging")
+	public Header<List<Res>> pagingRead(Pageable pageable) {
+			log.info("{}", pageable);
+		return baseService.pagingRead(pageable);
+	}
 	
 }

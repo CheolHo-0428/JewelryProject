@@ -18,6 +18,6 @@ public interface CrudInterface<Req, Res> {
 	
 	public Header<List<Res>> allRead(); //데이터 조회
 	
-	//public Header<List<Res>> pageableRead(Pageable pageable); //데이터 조회(페이징 정보값 받아옴)
+	public Header<List<Res>> pagingRead(Pageable pageable); //데이터 조회(페이징 처리)
 	
 }

@@ -4,10 +4,13 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.ion.jewelry.model.entity.NoticeBoard;
 import com.ion.jewelry.model.network.Header;
+import com.ion.jewelry.model.network.Pagination;
 import com.ion.jewelry.model.network.request.NoticeBoardRequest;
 import com.ion.jewelry.model.network.response.NoticeBoardResponse;
 
@@ -97,6 +100,24 @@ public class NoticeBoardService extends
 		return Header.OK(resBoardList);
 	}
 	
+	@Override
+	public Header<List<NoticeBoardResponse>> pagingRead(Pageable pageable) {
+		Page<NoticeBoard> page = baseRepo.findAll(pageable);
+		
+		List<NoticeBoardResponse> boardResList = page.stream()
+					.map(board -> response(board))
+					.collect(Collectors.toList());
+		
+		Pagination pagination = Pagination.builder()
+				.totalPages(page.getTotalPages())
+				.totalElements(page.getTotalElements())
+				.currentPage(page.getNumber())
+				.currentElements(page.getNumberOfElements())
+				.build();
+		
+		return Header.OK(boardResList, pagination);
+	}
+
 	public NoticeBoardResponse response(NoticeBoard board) {
 		NoticeBoardResponse res = NoticeBoardResponse.builder()
 				.id(board.getId())
