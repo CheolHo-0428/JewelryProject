@@ -19,22 +19,22 @@ import lombok.experimental.Accessors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"item"})
+@ToString(exclude = {"qnaBoard"})
 @Builder
 @Accessors(chain = true)
 @Entity
-public class Cart extends AABaseTimeEntity {
+public class QnaBoardReply extends AABaseTimeEntity {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "CartSequenceGenerator")
-	@SequenceGenerator(name = "CartSequenceGenerator", sequenceName = "CartSequence", initialValue = 1, allocationSize = 1)
-	private Long id; //장바구니번호
+	@GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "QnaBoardReplySequenceGenerator")
+	@SequenceGenerator(name="QnaBoardReplySequenceGenerator", sequenceName = "QnaBoardReplySequence", initialValue = 1, allocationSize = 1)
+	private Long id; // Qna댓글번호
 	
-	private Integer itemCount; //구매수량
+	private String writer; // Qna댓글작성자
 	
-	private Long memberId; //회원번호
+	private String content; // Qna댓글내용
 	
 	@ManyToOne
-	private Item item; //상품번호(fk), item 테이블 연관관계 설정(N:1)
-
+	private QnaBoard qnaBoard; //Qna번호(fk), QnaBoard 테이블 연관관계 설정(N:1)
+	
 }

@@ -49,6 +49,6 @@ public class ImageFile extends AABaseTimeEntity {
 	private YesNo deleteCheck; //파일삭제여부
 	
 	@ManyToOne
-	private Item item; // Item 테이블 연관관계 설정(N:1, fk)
+	private Item item; //상품번호(fk), Item 테이블 연관관계 설정(N:1)
 	
 }

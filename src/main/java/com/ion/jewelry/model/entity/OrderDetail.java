@@ -44,8 +44,8 @@ public class OrderDetail extends AABaseTimeEntity {
 	private OrderProductState orderProductState; //상품 주문상태
 	
 	@ManyToOne
-	private OrderGroup orderGroup; //OrderGroup 테이블 연관관계 설정(N:1, fk)
+	private OrderGroup orderGroup; //주문번호(fk), OrderGroup 테이블 연관관계 설정(N:1)
 	
 	@ManyToOne
-	private Item item; //Item 테이블 연관관계 설정(N:1, fk)
+	private Item item; //상품번호(fk), Item 테이블 연관관계 설정(N:1, fk)
 }

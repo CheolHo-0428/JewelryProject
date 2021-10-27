@@ -24,7 +24,7 @@ import lombok.experimental.Accessors;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"orderDetailList", "category", "cartList", "imageFileList"})
+@ToString(exclude = {"orderDetailList", "category", "cartList", "imageFileList", "reviewBoardList", "qnaBoardList"})
 @Builder
 @Accessors(chain = true)
 @Entity
@@ -42,7 +42,7 @@ public class Item extends AABaseTimeEntity {
 	private Integer stock; //상품재고
 	
 	@ManyToOne
-	private Category category; // category 테이블 연관관계 설정(N:1, fk)
+	private Category category; //카테고리번호(fk), category 테이블 연관관계 설정(N:1)
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<OrderDetail> orderDetailList; // OrderDetail 테이블 연관관계 설정(1:N)
@@ -52,4 +52,10 @@ public class Item extends AABaseTimeEntity {
 	
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<ImageFile> imageFileList; // ImageFile 테이블 연관관계 설정(1:N)
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private List<ReviewBoard> reviewBoardList; // ReviewBoard 테이블 연관관계 설정(1:N)
+	
+	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
+	private List<QnaBoard> qnaBoardList; // QnaBoard 테이블 연관관계 설정(1:N)
 }

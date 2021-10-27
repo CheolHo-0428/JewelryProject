@@ -91,8 +91,8 @@
 </template>
 
 <script>
-import axios from 'axios'
-const url = 'http://localhost:8000/api/1'
+// import axios from 'axios'
+// const url = 'http://localhost:8000/api/1'
 
 export default {
   methods: {
