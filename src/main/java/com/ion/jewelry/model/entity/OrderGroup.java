@@ -15,6 +15,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ion.jewelry.model.enums.OrderProductState;
 import com.ion.jewelry.model.enums.PayAccount;
 import com.ion.jewelry.model.enums.PayMethod;
@@ -70,10 +72,12 @@ public class OrderGroup extends AABaseTimeEntity {
 	private PayAccount payAccount; //입금계좌
 
 	private LocalDateTime arrivalDate; //상품 도착예정일
-		
+	
+	@JsonBackReference
 	@ManyToOne
 	private Member member; // 회원번호(fk), Member 테이블 연관관계 설정(N:1)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "orderGroup")
 	private List<OrderDetail> orderDetailList; // OrderDetail 테이블 연관관계 설정(1:N)
 	

@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.ion.jewelry.model.enums.OrderProductState;
 
 import lombok.AllArgsConstructor;
@@ -43,9 +44,11 @@ public class OrderDetail extends AABaseTimeEntity {
 	@Enumerated(EnumType.STRING)
 	private OrderProductState orderProductState; //상품 주문상태
 	
+	@JsonBackReference
 	@ManyToOne
 	private OrderGroup orderGroup; //주문번호(fk), OrderGroup 테이블 연관관계 설정(N:1)
 	
+	@JsonBackReference
 	@ManyToOne
 	private Item item; //상품번호(fk), Item 테이블 연관관계 설정(N:1, fk)
 }

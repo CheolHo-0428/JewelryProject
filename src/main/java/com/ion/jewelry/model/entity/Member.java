@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ion.jewelry.model.enums.MemberStatus;
 
 import lombok.AllArgsConstructor;
@@ -59,6 +60,7 @@ public class Member extends AABaseTimeEntity{
 	
 	private LocalDateTime unregDate; // 해지날짜
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "member")
 	private List<OrderGroup> orderGroupList;	//OrderGroup 테이블 연관관계 설정(1:N)
 }

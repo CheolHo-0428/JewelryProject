@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +36,7 @@ public class Cart extends AABaseTimeEntity {
 	
 	private Long memberId; //회원번호
 	
+	@JsonBackReference
 	@ManyToOne
 	private Item item; //상품번호(fk), item 테이블 연관관계 설정(N:1)
 

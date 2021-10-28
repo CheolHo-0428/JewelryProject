@@ -13,6 +13,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.ion.jewelry.model.enums.YesNo;
 
 import lombok.AllArgsConstructor;
@@ -58,9 +60,11 @@ public class QnaBoard extends AABaseTimeEntity {
 	@Enumerated(EnumType.STRING)
 	private YesNo deleteCheck; //이미지파일삭제여부
 	
+	@JsonBackReference
 	@ManyToOne
 	private Item item; //상품번호(fk), item 테이블 연관관계 설정(N:1)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "qnaBoard")
 	private List<QnaBoardReply> qnaBoardReplyList;
 }
