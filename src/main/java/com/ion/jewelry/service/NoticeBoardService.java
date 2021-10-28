@@ -130,6 +130,8 @@ public class NoticeBoardService extends
 				.storedFileName(board.getStoredFileName())
 				.fileSize(board.getFileSize())
 				.deleteCheck(board.getDeleteCheck())
+				.createdAt(board.getCreatedAt())
+				.updatedAt(board.getUpdatedAt())
 				.build();
 		
 		return res;
