@@ -13,7 +13,7 @@ import com.ion.jewelry.model.enums.MemberStatus;
 import com.ion.jewelry.model.network.Header;
 import com.ion.jewelry.model.network.Pagination;
 import com.ion.jewelry.model.network.request.MemberRequest;
-import com.ion.jewelry.model.network.request.MemberResponse;
+import com.ion.jewelry.model.network.response.MemberResponse;
 
 @Service
 public class MemberService extends AABaseService<MemberRequest, MemberResponse, Member> {

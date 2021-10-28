@@ -1,4 +1,4 @@
-package com.ion.jewelry.model.network.request;
+package com.ion.jewelry.model.network.response;
 
 import java.time.LocalDateTime;
 
