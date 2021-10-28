@@ -11,11 +11,11 @@
         </colgroup>
         <tr>
           <th>제목</th>
-          <td><input type="text" v-model="subject" ref="subject" /></td>
+          <td><input type="text" v-model="title" /></td>
         </tr>
         <tr>
           <th>내용</th>
-          <td><textarea v-model="cont" ref="cont"></textarea></td>
+          <td><textarea v-model="content"></textarea></td>
         </tr>
       </table>
     </form>
@@ -29,11 +29,13 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      subject: '',
-      cont: ''
+      title: '',
+      content: ''
     }
   },
   methods: {
@@ -54,13 +56,28 @@ export default {
       })
     },
     fnAddProc () {
-      if (!this.subject) {
+      if (!this.title) {
         this.$swal.fire({
           icon: 'info',
           title: '제목을 적어주세요.',
           confirmButtonColor: '#A9E2F3'
         })
       } else {
+        axios({
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          url: 'http://localhost:8000/jewelry/noticeBoard/reg',
+          data: JSON.stringify({
+            title: this.title,
+            content: this.content,
+            writer: 'testUser'
+          })
+        }).then(res => {
+          console.log(res)
+        }).catch(error => {
+          console.log(error)
+        })
+
         this.$swal.fire({
           icon: 'success',
           title: '공지사항이 등록되었습니다.',

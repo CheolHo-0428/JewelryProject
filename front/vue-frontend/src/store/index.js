@@ -1,9 +1,19 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import createPersistedState from 'vuex-persistedstate'
+import notice from './notice'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
+  modules: {
+    notice
+  },
+  plugins: [
+    createPersistedState({
+      paths: ['notice']
+    })
+  ],
   state: {
     count: 1,
     totalPrice: 10000,
@@ -30,7 +40,5 @@ export default new Vuex.Store({
     }
   },
   actions: {
-  },
-  modules: {
   }
 })

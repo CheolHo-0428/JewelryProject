@@ -1,5 +1,7 @@
 package com.ion.jewelry.model.network.response;
 
+import java.time.LocalDateTime;
+
 import com.ion.jewelry.model.enums.YesNo;
 
 import lombok.AllArgsConstructor;
@@ -32,4 +34,6 @@ public class NoticeBoardResponse {
 	private Long fileSize; //이미지파일크기
 	
 	private YesNo deleteCheck; //이미지파일삭제여부
+	
+	private LocalDateTime createdAt, updatedAt;
 }

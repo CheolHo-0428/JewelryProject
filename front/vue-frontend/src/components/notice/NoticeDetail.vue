@@ -11,11 +11,11 @@
         </colgroup>
         <tr>
           <th>제목</th>
-          <td><input type="text" v-model="subject" ref="subject" /></td>
+          <td><input type="text" v-model="title"/></td>
         </tr>
         <tr>
           <th>내용</th>
-          <td><textarea v-model="cont" ref="cont"></textarea></td>
+          <td><textarea v-model="content"></textarea></td>
         </tr>
       </table>
     </form>
@@ -30,11 +30,14 @@
 </template>
 
 <script>
+import axios from 'axios'
+
 export default {
   data () {
     return {
-      subject: '제목입니다.',
-      cont: '공지사항 내용'
+      title: '',
+      content: '',
+      id: 0
     }
   },
   methods: {
@@ -55,13 +58,27 @@ export default {
       })
     },
     mod () {
-      if (!this.subject) {
+      if (!this.title) {
         this.$swal.fire({
           icon: 'info',
           title: '제목을 적어주세요.',
           confirmButtonColor: '#A9E2F3'
         })
       } else {
+        axios.put(
+          'http://localhost:8000/jewelry/noticeBoard/update',
+          {
+            title: this.title,
+            content: this.content,
+            id: this.id,
+            writer: 'testUser'
+          }
+        ).then(res => {
+          console.log(res)
+        }).catch(error => {
+          console.log(error)
+        })
+
         this.$swal.fire({
           icon: 'success',
           title: '공지사항이 수정되었습니다.',
@@ -84,10 +101,37 @@ export default {
         cancelButtonText: 'No'
       }).then((result) => {
         if (result.isConfirmed) {
+          axios.delete(
+            `http://localhost:8000/jewelry/noticeBoard/${this.id}`,
+            {
+              data: {
+                id: this.id
+              }
+            }
+          ).then(function (response) {
+            console.log(response)
+          }).catch(function (error) {
+            console.log(error)
+          })
+
           location.href = '/notice'
         }
       })
+    },
+    notice () {
+      return axios.get(this.$store.state.notice.noticePageUrl)
+        .then(res => {
+          this.title = res.data.data[this.$store.state.notice.noticeNum].title
+          this.content = res.data.data[this.$store.state.notice.noticeNum].content
+          this.id = res.data.data[this.$store.state.notice.noticeNum].id
+        })
+        .catch(err => {
+          console.log(err)
+        })
     }
+  },
+  created () {
+    this.notice()
   }
 }
 </script>
