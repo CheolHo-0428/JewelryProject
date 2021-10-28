@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ion.jewelry.model.entity.Member;
 import com.ion.jewelry.model.network.Header;
 import com.ion.jewelry.model.network.request.MemberRequest;
-import com.ion.jewelry.model.network.request.MemberResponse;
+import com.ion.jewelry.model.network.response.MemberResponse;
 
 import lombok.extern.slf4j.Slf4j;
 
