@@ -7,6 +7,8 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -34,6 +36,7 @@ public class ReviewBoardReply extends AABaseTimeEntity {
 	
 	private String content; //댓글내용
 	
+	@JsonBackReference
 	@ManyToOne
 	private ReviewBoard reviewBoard; //리뷰번호(fk), ReviewBoard 테이블 연관관계 설정(N:1)
 	

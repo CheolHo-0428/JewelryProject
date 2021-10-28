@@ -12,6 +12,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,21 +44,27 @@ public class Item extends AABaseTimeEntity {
 	
 	private Integer stock; //상품재고
 	
+	@JsonBackReference
 	@ManyToOne
 	private Category category; //카테고리번호(fk), category 테이블 연관관계 설정(N:1)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<OrderDetail> orderDetailList; // OrderDetail 테이블 연관관계 설정(1:N)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<Cart> cartList; // Cart 테이블 연관관계 설정(1:N)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<ImageFile> imageFileList; // ImageFile 테이블 연관관계 설정(1:N)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<ReviewBoard> reviewBoardList; // ReviewBoard 테이블 연관관계 설정(1:N)
 	
+	@JsonManagedReference
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "item")
 	private List<QnaBoard> qnaBoardList; // QnaBoard 테이블 연관관계 설정(1:N)
 }
